@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+const PORT = process.env.PORT || 3000
 
 dotenv.config();
 
@@ -24,15 +25,13 @@ app.use('/api/user', UserRoutes);
 app.use('/api/snap', SnapRoutes);
 app.use('/api/comment', CommentRoutes);
 
+app.listen(PORT, () => {
+    console.log('Server started at', PORT)
+})
 
 mongoose.connect(process.env.DB_URL, (err) => {
     if (err) {
         console.log('Something went wrong', err)
     }
     console.log('Mongodb connected successfully')
-})
-
-
-app.listen(process.env.PORT, () => {
-    console.log('Server started at', process.env.PORT)
 })
