@@ -94,7 +94,7 @@ Router.post('/login', async (req, res) => {
 
         const user = await User.findOne({
             username
-        }).populate('snaps');
+        }).populate('snaps following followers');
         if (user) {
             // Check for password match
             const passwordMatches = await bcrypt.compare(password, user.password);
@@ -215,7 +215,35 @@ Router.get('/search/:searchQuery', async (req, res) => {
 });
 
 
+// Follow User
+Router.post('/follow', VerifyToken, async (req, res) => {
+    const {
+        user,
+        followUserId
+    } = req.body;
 
+    try {
+        const theUser = await User.findById(user);
+        const followedUser = await User.findById(followUserId);
+        if (theUser.following.indexOf(followUserId) > -1) {
+            return res.send({
+                error: true,
+                errorLog: 'Already following the user!'
+            })
+        }
+        theUser.following.push(followUserId);
+        await theUser.save();
+        followedUser.followers.push(user);
+        await followedUser.save();
+        return res.send(followedUser);
+
+    } catch (error) {
+        return res.send({
+            error: true,
+            errorLog: error
+        })
+    }
+})
 
 
 

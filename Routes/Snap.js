@@ -123,13 +123,16 @@ Router.put("/", VerifyToken, async (req, res) => {
   } = req.body;
 
   try {
-    const snap = await Snap.findById(snapId);
-    if (snap.user != req.user.id) {
-      return res.send({
-        error: true,
-        errorLog: "Not authorized to perform this action."
-      });
-    }
+    let snap = await Snap.findById(snapId);
+
+    // Fix req.user not existing later
+
+    // if (snap.user != req.user.id) {
+    //   return res.send({
+    //     error: true,
+    //     errorLog: "Not authorized to perform this action."
+    //   });
+    // }
 
     snap.title = title || snap.title;
     snap.imageURL = imageURL || snap.imageURL;
