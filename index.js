@@ -25,6 +25,10 @@ app.use('/api/user', UserRoutes);
 app.use('/api/snap', SnapRoutes);
 app.use('/api/comment', CommentRoutes);
 
+app.get('/', (req, res) => {
+    res.send('Welcome to the Snapshots API');
+})
+
 app.listen(PORT, () => {
     console.log('Server started at', PORT)
 })
