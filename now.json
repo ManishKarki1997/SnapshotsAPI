@@ -1,0 +1,19 @@
+{
+    "name": "snapshots-api",
+    "version": 2,
+    "build": {
+        "env": {
+            "DB_URL": "mongodb+srv://Manish:Inspiron7@manishkarki-luxzk.mongodb.net/test?retryWrites=true&w=majority",
+            "JWT_TOKEN_SECRET": "my_token_98123012983123asd12sd",
+            "PORT": "80"
+        }
+    },
+    "builds": [{
+        "src": "index.js",
+        "use": "@now/node-server"
+    }],
+    "routes": [{
+        "src": "/(.*)",
+        "dest": "/index.js"
+    }]
+}

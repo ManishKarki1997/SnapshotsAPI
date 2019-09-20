@@ -1,10 +1,11 @@
 {
   "name": "instagram-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "API for the Snapshots APP",
   "main": "index.js",
   "scripts": {
-    "start": "node index"
+    "start": "node index",
+    "build": "node index"
   },
   "author": "Manish Karki",
   "license": "ISC",

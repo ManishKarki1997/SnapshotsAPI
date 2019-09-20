@@ -29,11 +29,11 @@ app.get('/', (req, res) => {
     res.send('Welcome to the Snapshots API');
 })
 
-app.listen(PORT, () => {
-    console.log('Server started at', PORT)
+app.listen(3000, () => {
+    console.log('Server started at', 3000)
 })
 
-mongoose.connect(process.env.DB_URL, (err) => {
+mongoose.connect("mongodb+srv://Manish:Inspiron7@manishkarki-luxzk.mongodb.net/test?retryWrites=true&w=majority", (err) => {
     if (err) {
         console.log('Something went wrong', err)
     }

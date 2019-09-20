@@ -9,7 +9,9 @@ const VerifyToken = require('../middlewares/verifyToken')
 
 // Get User Info
 Router.get('/', async (req, res) => {
-    const user = await User.find({});
+    const user = await User.find({}).select({
+        password: 0
+    });
     return res.send(user);
 });
 
@@ -125,7 +127,6 @@ Router.post('/login', async (req, res) => {
         }
 
     } catch (error) {
-
         return res.send({
             error: true,
             errorLog: error
