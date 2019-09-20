@@ -32,7 +32,7 @@ Router.post('/', async (req, res) => {
     if (error) {
         return res.send({
             error: true,
-            log: error.details[0].message
+            errorLog: error.details[0].message
         })
     };
 
@@ -43,7 +43,7 @@ Router.post('/', async (req, res) => {
         if (duplicateEmail) {
             return res.send({
                 error: true,
-                log: 'User with that email already exists'
+                errorLog: 'User with that email already exists'
             })
         }
 
@@ -53,7 +53,7 @@ Router.post('/', async (req, res) => {
         if (duplicateUsername) {
             return res.send({
                 error: true,
-                log: 'User with that username already exists'
+                errorLog: 'User with that username already exists'
             })
         }
         const hash = await bcrypt.genSalt(10);
@@ -79,7 +79,7 @@ Router.post('/', async (req, res) => {
     } catch (error) {
         return res.send({
             error: true,
-            log: error
+            errorLog: error
         })
     }
 });

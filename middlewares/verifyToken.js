@@ -1,21 +1,21 @@
-const jwt=require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
-module.exports=function(req,res,next){
-    const token=req.get('auth-token');
-    if(!token){
+module.exports = function (req, res, next) {
+    const token = req.get('auth-token');
+    if (!token) {
         return res.send({
-            error:true,
-            errorLog:'No Authorization Header'
+            error: true,
+            errorLog: 'No Authorization Header'
         })
     };
-    try{
-        const decodedToken=jwt.verify(token,process.env.JWT_TOKEN_SECRET);
-        req.user=decodedToken;
+    try {
+        const decodedToken = jwt.verify(token, process.env.JWT_TOKEN_SECRET);
+        req.user = decodedToken;
         next();
-    }catch(err){
+    } catch (err) {
         res.send({
-            error:true,
-            errorLog:'Invalid Authorization Token'
+            error: true,
+            errorLog: 'Invalid Authorization Token'
         })
     }
 
